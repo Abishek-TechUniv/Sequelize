@@ -28,5 +28,18 @@ describe('Testing the Hapi server that processes the requests', () => {
       done();
     });
   });
+
+
+  it('Should return 201 status code for sucessful POST request', (done) => {
+    const request = {
+      method: 'POST',
+      url: '/users/',
+      payload: JSON.stringify({ firstName: 'Abishek', lastName: 'Aditya' }),
+    };
+    server.inject(request, (response) => {
+      expect(response.result.statusCode).toBe(201);
+      done();
+    });
+  });
 });
 
