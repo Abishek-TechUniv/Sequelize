@@ -34,8 +34,9 @@ const routes = [
       Models.users.create({
         firstName: request.payload.firstName,
         lastName: request.payload.lastName,
-      }).then(reply({
+      }).then(result => reply({
         status: 201,
+        result,
       }));
     },
   },
@@ -57,9 +58,10 @@ const routes = [
     path: '/users/{id}',
     handler: (request, reply) => {
       Models.users.destroy({ where: { id: request.params.id } })
-        .then(() => {
+        .then((result) => {
           reply({
             status: 200,
+            result,
           });
         });
     },
