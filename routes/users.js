@@ -14,7 +14,19 @@ const routes = [
         });
     },
   },
-
+  { // READ ONE
+    method: 'GET',
+    path: '/users/{id}',
+    handler: (request, reply) => {
+      Models.users.findAll({ where: { id: request.params.id } })
+        .then((table) => {
+          reply({
+            users: table,
+            status: 200,
+          });
+        });
+    },
+  },
 ];
 
 module.exports = routes;

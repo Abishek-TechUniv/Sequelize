@@ -17,5 +17,16 @@ describe('Testing the Hapi server that processes the requests', () => {
       done();
     });
   });
+
+  it('Should return 200 status code for sucessful GET request', (done) => {
+    const request = {
+      method: 'GET',
+      url: '/users',
+    };
+    server.inject(request, (response) => {
+      expect(response.statusCode).toBe(200);
+      done();
+    });
+  });
 });
 
