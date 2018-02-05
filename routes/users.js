@@ -39,6 +39,31 @@ const routes = [
       }));
     },
   },
+  { // UPDATE
+    method: 'PATCH',
+    path: '/users/{id}',
+    handler: (request, reply) => {
+      Models.users.update(
+        {
+          firstName: request.payload.firstName,
+          lastName: request.payload.lastName,
+        },
+        { where: { id: request.params.id } },
+      ).then(() => reply({ status: 201 }));
+    },
+  },
+  { // DELETE
+    method: 'DELETE',
+    path: '/users/{id}',
+    handler: (request, reply) => {
+      Models.users.destroy({ where: { id: request.params.id } })
+        .then(() => {
+          reply({
+            status: 200,
+          });
+        });
+    },
+  },
 ];
 
 module.exports = routes;

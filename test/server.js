@@ -41,5 +41,17 @@ describe('Testing the Hapi server that processes the requests', () => {
       done();
     });
   });
+
+  it('Should return success or failure of deleted record on sucessful POST request', (done) => {
+    const request = {
+      method: 'POST',
+      url: '/users/delete',
+      payload: JSON.stringify({ firstName: 'Abishek', lastName: 'Aditya' }),
+    };
+    server.inject(request, (response) => {
+      expect(response.result.result).toBe(1);
+      done();
+    });
+  });
 });
 
